@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '6.5'
+
+sourceCompatibility = 11
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.1.0'
+
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.testng:testng:7.6.0'
+    implementation 'io.cucumber:cucumber-java:5.7.0'
+    implementation 'io.cucumber:cucumber-junit:5.7.0'
+    implementation("org.seleniumhq.selenium:selenium-java:4.6.0")
+    implementation("org.seleniumhq.selenium:selenium-chrome-driver:4.6.0")
+    //implementation 'com.cucumber.listener.extentcucumberformatter'
+
+}
+
+test {
+    useJUnitPlatform()
+}
