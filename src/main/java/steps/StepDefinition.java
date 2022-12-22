@@ -18,14 +18,14 @@ public class StepDefinition {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
-        driver.get("https://dpsopsportaltsys2.ihsdev.discoverfinancial.com/dcisc-sso-web/login");
+        driver.get("");
     }
 
     @When("enter the username and password")
     public void enterTheUsernameAndPassword() throws Throwable {
 
-        driver.findElement(By.id("username")).sendKeys("vkanna2");
-        driver.findElement(By.id("password")).sendKeys("Cts-dec2022");
+        driver.findElement(By.id("username")).sendKeys("");
+        driver.findElement(By.id("password")).sendKeys("");
         driver.findElement(By.id("submit")).click();
 
 
