@@ -3,6 +3,7 @@ package steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -13,7 +14,7 @@ public class StepDefinition {
     public WebDriver driver;
     @Given("login to mail")
     public void loginToMail() {
-        System.setProperty("webdriver.chrome.driver", "/Volumes/Google Chrome/Google Chrome.app");
+//        System.setProperty("webdriver.chrome.driver", "/Applications/Google Chrome.app/");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
@@ -21,7 +22,12 @@ public class StepDefinition {
     }
 
     @When("enter the username and password")
-    public void enterTheUsernameAndPassword() {
+    public void enterTheUsernameAndPassword() throws Throwable {
+
+        driver.findElement(By.id("username")).sendKeys("vkanna2");
+        driver.findElement(By.id("password")).sendKeys("Cts-dec2022");
+        driver.findElement(By.id("submit")).click();
+
 
     }
 
