@@ -14,12 +14,11 @@ public class StepDefinition {
     public WebDriver driver;
     @Given("login to mail")
     public void loginToMail() {
-//        System.setProperty("webdriver.chrome.driver", "/Applications/Google Chrome.app/");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
         driver.get("https://phptravels.org/clientarea.php");
-//        driver.findElement(By.id("")).click();
+
     }
 
     @When("enter the username and password")
