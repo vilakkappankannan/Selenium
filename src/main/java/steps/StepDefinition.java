@@ -18,7 +18,6 @@ public class StepDefinition {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
         driver.get("https://phptravels.org/clientarea.php");
-
     }
 
     @When("enter the username and password")
