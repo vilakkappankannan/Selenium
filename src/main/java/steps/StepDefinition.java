@@ -17,16 +17,15 @@ public class StepDefinition {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
-        driver.get("https://phptravels.org/clientarea.php");
+        driver.get("https://old.reddit.com/login");
     }
 
     @When("enter the username and password")
     public void enterTheUsernameAndPassword() throws Throwable {
 
-        driver.findElement(By.id("inputEmail")).sendKeys("");
-        driver.findElement(By.id("inputPassword")).sendKeys("");
-        driver.findElement(By.id("login")).click();
-        driver.findElement(By.id("Primary_Navbar_Service")).click();
+        driver.findElement(By.id("user_login")).sendKeys("");
+        driver.findElement(By.id("passwd_login")).sendKeys("");
+        driver.findElement(By.xpath("//*[@id=\"login-form\"]/div[5]/button")).click();
     }
 
     @Then("login successful")
