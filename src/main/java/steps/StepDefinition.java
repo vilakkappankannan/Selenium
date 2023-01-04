@@ -18,16 +18,17 @@ public class StepDefinition {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
-        driver.get("");
+        driver.get("https://phptravels.org/clientarea.php");
+//        driver.findElement(By.id("")).click();
     }
 
     @When("enter the username and password")
     public void enterTheUsernameAndPassword() throws Throwable {
 
-        driver.findElement(By.id("username")).sendKeys("");
-        driver.findElement(By.id("password")).sendKeys("");
-        driver.findElement(By.id("submit")).click();
-
+        driver.findElement(By.id("inputEmail")).sendKeys("");
+        driver.findElement(By.id("inputPassword")).sendKeys("");
+        driver.findElement(By.id("login")).click();
+        driver.findElement(By.id("Primary_Navbar_Service")).click();
 
     }
 
