@@ -27,7 +27,6 @@ public class StepDefinition {
         driver.findElement(By.id("inputPassword")).sendKeys("");
         driver.findElement(By.id("login")).click();
         driver.findElement(By.id("Primary_Navbar_Service")).click();
-
     }
 
     @Then("login successful")
