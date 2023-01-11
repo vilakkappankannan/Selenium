@@ -29,8 +29,8 @@ public class StepDefinition {
     @When("enter the username and password")
     public void enterTheUsernameAndPassword() throws Throwable {
 
-        driver.findElement(By.id("user_login")).sendKeys("vilakkappan");
-        driver.findElement(By.id("passwd_login")).sendKeys("Selenium2023");
+        driver.findElement(By.id("user_login")).sendKeys("");
+        driver.findElement(By.id("passwd_login")).sendKeys("");
         driver.findElement(By.xpath("//*[@id=\"login-form\"]/div[5]/button")).click();
         driver.findElement(By.xpath("//*[@id=\"redesign-beta-optin-btn\"]")).click();
         driver.findElement(By.xpath("//*[@id=\"AppRouter-main-content\"]/div/div/div[2]/div[2]/div[1]/div[1]/input")).click();
