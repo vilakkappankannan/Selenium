@@ -1,34 +1,4 @@
-//plugins {
-//    id 'java'
-//}
-//
-//group 'org.example'
-//version '6.5'
-//
-//sourceCompatibility = 11
-//
-//
-//repositories {
-//    mavenCentral()
-//}
-//
-//dependencies {
-//    implementation 'org.testng:testng:7.1.0'
-//
-////    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-////    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-//    testImplementation 'org.testng:testng:7.6.0'
-//    implementation 'io.cucumber:cucumber-java:5.7.0'
-//    implementation 'io.cucumber:cucumber-junit:5.7.0'
-//    implementation("org.seleniumhq.selenium:selenium-java:4.6.0")
-//    implementation("org.seleniumhq.selenium:selenium-chrome-driver:4.6.0")
-//    //implementation 'com.cucumber.listener.extentcucumberformatter'
-//
-//}
-//
-//test {
-//    useJUnitPlatform()
-//}
+
 
 
 plugins {
@@ -48,7 +18,9 @@ repositories {
 }
 
 dependencies {
-
+testImplementation 'org.testng:testng:7.6.0'
+implementation("org.seleniumhq.selenium:selenium-java:4.6.0")
+implementation("org.seleniumhq.selenium:selenium-chrome-driver:4.6.0")
     implementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     implementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
@@ -65,6 +37,7 @@ dependencies {
     implementation "io.cucumber:cucumber-junit:7.8.1"
     implementation "io.cucumber:cucumber-spring:7.8.1"
     implementation group: 'org.json', name: 'json', version: '20220924'
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
 
 }
 

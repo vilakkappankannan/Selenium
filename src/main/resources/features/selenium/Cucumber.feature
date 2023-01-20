@@ -1,6 +1,6 @@
 Feature: Smoke Tests
 
-  @smoke
+@smoke
   Scenario Outline: API Test
     Given a maximal request <apiURI>
     When "Eligibility" api is called

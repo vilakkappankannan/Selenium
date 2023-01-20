@@ -7,7 +7,8 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/main/resources/features/selenium",
-        glue = {"steps"},
+        glue = {"steps", "configurations"},
+//        monochrome = true,
 //        stepNotifications = true,
 //        strict = true,
         tags = "@smoke"
@@ -16,3 +17,4 @@ import org.junit.runner.RunWith;
 public class TestRunner {
 
 }
+

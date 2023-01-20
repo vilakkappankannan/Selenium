@@ -6,7 +6,7 @@ Feature: Test
 #    When enter the username and password
 #    Then login successful
 
-
+@smoke1
   Scenario: create post
     Given login to mail
     When enter the username and password
