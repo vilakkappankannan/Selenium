@@ -29,14 +29,12 @@ import static org.junit.Assert.assertEquals;
 @Slf4j
 public class CucumberSteps {
     public HashMap<Object,Object> map=new HashMap<Object,Object>();
-    RequestSpecification request;
-    private Properties properties;
     private static Response response;
 
-    private PropertiesConfig propertiesConfig = new PropertiesConfig();
+    final PropertiesConfig propertiesConfig = new PropertiesConfig();
 
     @Given("a maximal request {word}")
-    public void a_maximal_request(String apiURI) throws IOException {
+    public void endPoint(String apiURI) throws IOException {
 
         //Base Url
         RestAssured.baseURI= propertiesConfig.readProperties().getProperty("baseURI");
@@ -46,19 +44,17 @@ public class CucumberSteps {
     }
 
     @When("{string} api is called")
-    public void api_is_called(String string) {
+    public void apiCalled(String string) throws IOException {
 
-        //Request Body
-        JSONObject requestParams = new JSONObject();
-        requestParams.put("cardNumber", "1234567");
-        requestParams.put("cvv", "124");
-
-        log.info("requestBody : " + '\n' + requestParams.toString());
+        Resource resource = new ClassPathResource("json/request/EligibilityRequest.json");
+        File file = resource.getFile();
+        String request1 = new String(Files.readAllBytes(file.toPath()));
+        log.info("requestBody : " + '\n' + request1);
 
         //Response Body
         response = given()
                 .contentType(ContentType.JSON)
-                .body(requestParams.toString())
+                .body(request1)
                 .when()
                 .post()
                 .then()
@@ -66,9 +62,9 @@ public class CucumberSteps {
                 extract().response();
     }
     @Then("Validate the {string} response")
-    public void validate_the_response(String string) throws IOException {
+    public void responseValidation(String string) throws IOException {
 
-        ResponseBody responseBody = response.getBody();
+        var responseBody = response.getBody();
         log.info("responseBody : " + '\n' + responseBody.asPrettyString());
     }
 
@@ -77,27 +73,16 @@ public class CucumberSteps {
         Resource resource = new ClassPathResource("json/response/actual.json");
         File file = resource.getFile();
         String content = new String(Files.readAllBytes(file.toPath()));
-        System.out.println(content);
+        log.info(content);
 
         Resource resource1 = new ClassPathResource("json/response/expected.json");
         File file1 = resource1.getFile();
         String content1 = new String(Files.readAllBytes(file1.toPath()));
-        System.out.println(content1);
+        log.info(content1);
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode actualTree =mapper.readTree(content);
         JsonNode expectedTree=mapper.readTree(content1);
         assertEquals(actualTree, expectedTree);
-    }
-    @Given("scenario data")
-    public void scenarioData() {
-    }
-
-    @When("the {string} api is called with the {string} request and data")
-    public void theApiIsCalledWithTheRequestAndData(String arg0, String arg1) {
-    }
-
-    @Then("validate the response against the {string} file and expected data")
-    public void validateTheResponseAgainstTheFileAndExpectedData(String arg0) {
     }
 }
