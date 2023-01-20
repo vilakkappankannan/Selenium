@@ -3,6 +3,7 @@ package com.vk.controller;
 import com.vk.module.EligibilityRequest;
 import com.vk.module.EligibilityResponse;
 import com.vk.service.EligibilityService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +15,8 @@ public class EligibilityController {
     private EligibilityService service;
 
     //Request
-    @RequestMapping(path = "/test", method = RequestMethod.POST)
-    public @ResponseBody EligibilityResponse eligibility(@RequestBody EligibilityRequest add) {
+    @PostMapping(value = "/test")
+    public EligibilityResponse eligibility(@Valid  @RequestBody EligibilityRequest add) {
         service.saveEligibility(add);
 
         //Response
@@ -25,7 +26,7 @@ public class EligibilityController {
         return response;
 
     }
-    @RequestMapping(path="/test1",method=RequestMethod.POST,consumes = "text/plain")
+    @PostMapping(value="/test1",consumes = "text/plain")
     public String newMethod(String word)
     {
         return word;

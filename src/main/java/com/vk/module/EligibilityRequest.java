@@ -1,8 +1,8 @@
 package com.vk.module;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -11,7 +11,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
 public class EligibilityRequest {
 
     @Valid
