@@ -20,6 +20,6 @@ public class EligibilityRequest {
 
     @Valid
     @NotNull
-    @Size(min = 1, max = 64)
-    private int cvv;
+    @Size(min = 1, max = 3)
+    private String cvv;
 }
