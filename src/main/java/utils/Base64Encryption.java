@@ -1,23 +1,21 @@
 package utils;
 
-import com.vk.entity.Eligibility;
-import com.vk.module.EligibilityRequest;
-
 import java.util.Base64;
 
 public class Base64Encryption {
 
-    private EligibilityRequest eligibilityRequest;
-    public static void main(String[] args) {
+    public String encrypt(String toBeEncrypted){
 
-        String encode = "Test";
-        String encrypt= Base64.getEncoder().encodeToString(encode.getBytes());
+        String encrypt= Base64.getEncoder().encodeToString(toBeEncrypted.getBytes());
         System.out.println(encrypt);
+        return encrypt;
+    }
+    public String decrypt(String toBeDecrypted) {
 
-
-        byte[] actualByte= Base64.getDecoder().decode(encrypt);
-        String actualString= new String(actualByte);
-        System.out.println(actualString);
+        byte[] actualByte= Base64.getDecoder().decode(toBeDecrypted);
+        String decrypt= new String(actualByte);
+        System.out.println(decrypt);
+        return decrypt;
     }
 
 //    public class Base64Encryption {
