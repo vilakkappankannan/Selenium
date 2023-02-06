@@ -7,7 +7,6 @@ import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
 
 public class demo extends Simulation {
-
     HttpProtocolBuilder req = http.baseUrl("https://example.com");
 
     ScenarioBuilder scenario = scenario("HelloWorld")
