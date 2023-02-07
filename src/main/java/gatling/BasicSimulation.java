@@ -13,8 +13,8 @@ public class BasicSimulation extends Simulation {
             .exec(http("TOO_Home")
             .get("/")
             .check(
-                   status().is(201),
-                   status().is(500)
+                   status().is(200),
+                   status().is(600)
             ))
             .pause(3);
     {
