@@ -6,12 +6,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Masking {
-    private String cardNumber;
-public Masking(String cardNumber){
-    super();
-    this.cardNumber=cardNumber;
 
+    public String mask(String toBeMasked) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < toBeMasked.length(); sb.append("*"), i++) ;
+        return sb.toString();
 
-
-    }
+      }
 }
+
+
