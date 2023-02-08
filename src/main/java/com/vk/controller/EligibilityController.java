@@ -19,7 +19,7 @@ public class EligibilityController {
     private EligibilityService service;
     private Masking masking = new Masking();
     private Base64Encryption base64Encryption = new Base64Encryption();
-    private SecureContext secureContext;
+    private SecureContext secureContext = new SecureContext();
     //Request
     @PostMapping(value = "/test")
     public EligibilityResponse eligibility(@Valid  @RequestBody EligibilityRequest add) {
@@ -32,6 +32,7 @@ public class EligibilityController {
         response.setCardNumber(masking.mask(add.getCardNumber()));
 //        response.setEncrypt(base64Encryption.encrypt("Test"));
 //        response.getSecureContext().getEncrypt(response.setSecureContext());
+        secureContext.getEncrypt();
 
         return response;
     }

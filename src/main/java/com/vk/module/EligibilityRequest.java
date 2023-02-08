@@ -15,7 +15,7 @@ public class EligibilityRequest {
 
     @Valid
     @NotNull
-    @Size(min = 1, max = 5)
+    @Size(min = 1, max = 10)
     private String cardNumber;
 
     @Valid

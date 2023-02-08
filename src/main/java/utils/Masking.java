@@ -7,12 +7,21 @@ import lombok.Setter;
 @Setter
 public class Masking {
 
-    public String mask(String toBeMasked) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < toBeMasked.length(); sb.append("*"), i++) ;
-        return sb.toString();
+// All mask
+//    public String mask(String toBeMasked) {
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 0; i < toBeMasked.length(); sb.append("*"), i++) ;
+//        return sb.toString();
+//
+//      }
 
-      }
+
+    // Particular mask
+    public String mask(String toBeMasked) {
+
+        toBeMasked = toBeMasked.replaceFirst(toBeMasked.substring(0, 4), "****");
+        return(toBeMasked);
+    }
 }
 
 
