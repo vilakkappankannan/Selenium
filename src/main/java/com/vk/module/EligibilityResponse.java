@@ -6,8 +6,8 @@ import lombok.Data;
 public class EligibilityResponse {
 
     private String message;
-    private String cardNumber;
     private int status;
+    private String cardNumber;
     private SecureContext secureContext;
 
 }
