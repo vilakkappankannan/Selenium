@@ -26,12 +26,12 @@ Stability– Determines if the application is stable under varying loads.
 It uncovers what needs to be improved before the product goes to market.
 
 ## How to run
-1. To run particular files, Goto terminal and run the below comments,
+1. To run particular file, Goto terminal and run the below comments,
    examples,
       a) ./gradlew gatlingRun-demo.BasicSimulation   
       b) ./gradlew gatlingRun-checks.ChecksDemo
       c) ./gradlew gatlingRun-assertions.AssertionsDemo
 
-2. To run all 
+2. To run all files, Goto terminal and run the below comment,
    ./gradlew gatlingRun
 
