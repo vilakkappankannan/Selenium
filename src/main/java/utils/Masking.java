@@ -10,6 +10,7 @@ public class Masking {
 //
 //      }
 
+
     // Particular mask
     public String mask(String toBeMasked) {
 
