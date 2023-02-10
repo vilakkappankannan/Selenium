@@ -36,10 +36,11 @@ public class EligibilityController {
 
         return response;
     }
-    @PostMapping(value="/test1",consumes = "text/plain")
-    public String newMethod(String word)
+    @GetMapping(value="/test1",consumes = "text/plain")
+    public String newMethod()
     {
-        return word;
+        System.out.println("VK-Gatling");
+        return "hello world";
 
     }
 }
