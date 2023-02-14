@@ -1,0 +1,4 @@
+{
+  "cardNumber": "#{CARD_NUMBER}",
+  "cvv": "#{CVV}"
+}

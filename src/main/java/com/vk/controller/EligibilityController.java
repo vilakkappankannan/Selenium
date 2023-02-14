@@ -32,7 +32,7 @@ public class EligibilityController {
         response.setCardNumber(masking.mask(add.getCardNumber()));
 //        response.setEncrypt(base64Encryption.encrypt("Test"));
 //        response.getSecureContext().getEncrypt(response.setSecureContext());
-        secureContext.getEncrypt();
+        response.setSecureContext(new SecureContext("secure"));
 
         return response;
     }

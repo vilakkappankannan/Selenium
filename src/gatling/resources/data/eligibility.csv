@@ -1,4 +1,2 @@
-{
-  "cardNumber": "12345",
-  "cvv": "456"
-}
+CARD_NUMBER,CVV
+123456789,123
