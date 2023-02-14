@@ -40,6 +40,7 @@ public class BasicSimulation extends Simulation {
                 )
                 .protocols(req))
 
+
         //assertion
             .assertions(CoreDsl.global().responseTime().percentile3().lte(100))    // for all requests - percentile3 => 95 - ms
             .assertions(CoreDsl.forAll().responseTime().max().lte(100))            // stats for individual requests - max response time in ms
