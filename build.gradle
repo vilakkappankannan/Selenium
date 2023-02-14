@@ -77,3 +77,11 @@ configurations.all {
 test {
     useJUnitPlatform()
 }
+
+gatling{
+    simulations = {
+//        include "**demo/ChecksDemoSimulation.java"
+        include "**demo/BasicSimulation.java"
+//        include "**demo/BasicSimulation.java"
+    }
+}
