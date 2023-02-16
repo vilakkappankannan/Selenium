@@ -1,4 +1,7 @@
 {
-  "cardNumber": "#{CARD_NUMBER}",
-  "cvv": "#{CVV}"
+  "cardDetails": {
+    "cardNumber": "#{CARD_NUMBER}",
+    "cvv": "#{CVV}"
+  },
+  "requestId": "${requestId}"
 }

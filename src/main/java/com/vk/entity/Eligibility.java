@@ -14,6 +14,8 @@ public class Eligibility {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long provisionId;
+
+    private String requestId;
     private String cardNumber;
     private String cvv;
 
