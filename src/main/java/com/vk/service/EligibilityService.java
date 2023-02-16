@@ -16,9 +16,10 @@ public class EligibilityService {
     public Eligibility saveEligibility (EligibilityRequest request) {
 
         Eligibility eligibility = new Eligibility();
-//        eligibility.setCardNumber(request.getCardNumber());
-        eligibility.setCardNumber(base64Encryption.encrypt(request.getCardNumber()));
-        eligibility.setCvv(request.getCvv());
+        eligibility.setCardNumber(request.getRequestId());
+//        eligibility.setCardNumber(base64Encryption.encrypt(request.getCardDetails().getCardNumber()));
+        eligibility.setCardNumber(request.getCardDetails().getCardNumber());
+        eligibility.setCvv(request.getCardDetails().getCvv());
         return repo.save(eligibility);
 
     }
