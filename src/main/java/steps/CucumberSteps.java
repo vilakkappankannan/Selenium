@@ -37,7 +37,7 @@ public class CucumberSteps {
         //Base Url
         RestAssured.baseURI= propertiesConfig.readProperties().getProperty("baseURI");
         RestAssured.basePath= propertiesConfig.readProperties().getProperty(apiURI+".version")+propertiesConfig.readProperties().getProperty(apiURI+".uri");
-        log.info("requestURl : " + '\n' + baseURI+basePath);
+        log.info("\n ****************** End Point ****************** " + '\n' + baseURI+basePath);
 
     }
 
@@ -47,7 +47,7 @@ public class CucumberSteps {
         Resource resource = new ClassPathResource("json/request/EligibilityRequest.json");
         File file = resource.getFile();
         String request1 = new String(Files.readAllBytes(file.toPath()));
-        log.info("requestBody : " + '\n' + request1);
+        log.info("\n ****************** Request Body ****************** " + '\n' + request1);
 
         //Response Body
         response = given()
@@ -63,7 +63,7 @@ public class CucumberSteps {
     public void responseValidation(String string) throws IOException {
 
         var responseBody = response.getBody();
-        log.info("responseBody : " + '\n' + responseBody.asPrettyString());
+        log.info("\n ****************** Response Body ****************** " + '\n' + responseBody.asPrettyString());
     }
 
     @And("compare the file {string} is equal to {string}")
@@ -71,12 +71,12 @@ public class CucumberSteps {
         Resource resource = new ClassPathResource("json/response/actual.json");
         File file = resource.getFile();
         String content = new String(Files.readAllBytes(file.toPath()));
-        log.info(content);
+        log.info("\n ****************** Actual data ****************** " + '\n' + content);
 
         Resource resource1 = new ClassPathResource("json/response/expected.json");
         File file1 = resource1.getFile();
         String content1 = new String(Files.readAllBytes(file1.toPath()));
-        log.info(content1);
+        log.info("\n ****************** Expected data ****************** " + '\n' + content1);
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode actualTree =mapper.readTree(content);
