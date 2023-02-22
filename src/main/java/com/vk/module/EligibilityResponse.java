@@ -8,7 +8,6 @@ public class EligibilityResponse {
     private String message;
     private int status;
     private String cardNumber;
-
     private String requestId;
     private SecureContext secureContext;
 
