@@ -28,10 +28,10 @@ public class EligibilityController {
         //Response
         EligibilityResponse response = new EligibilityResponse();
         response.setStatus(200);
-        response.setMessage("Success");
+        response.setMessage("success");
         response.setRequestId(add.getRequestId());
         response.setCardNumber(masking.mask(add.getCardDetails().getCardNumber()));
-        response.setSecureContext(new SecureContext(masking.mask(add.getCardDetails().getCardNumber())));
+        response.setSecureContext(new SecureContext(base64Encryption.encrypt(add.getCardDetails().getCardNumber())));
 
         return response;
     }
