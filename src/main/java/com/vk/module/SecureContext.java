@@ -15,6 +15,6 @@ public class SecureContext {
 
   private String encrypt;
 
-  private EncryptedFields encryptedFields;
+//  private EncryptedFields encryptedFields;
 
 }
