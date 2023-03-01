@@ -1,0 +1,9 @@
+{
+  "message": "success",
+  "status": 200,
+  "cardNumber": "****2",
+  "requestId": "random",
+  "secureContext": {
+    "encrypt": "MjIyMjI="
+  }
+}

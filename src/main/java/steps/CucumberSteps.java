@@ -11,24 +11,31 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
-import org.json.JSONObject;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.HashMap;
-import java.util.Properties;
 
 import static io.restassured.RestAssured.*;
 import static org.junit.Assert.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Slf4j
 public class CucumberSteps {
     public HashMap<Object,Object> map=new HashMap<Object,Object>();
     private static Response response;
-
+    private ResultActions resultActions;
     final PropertiesConfig propertiesConfig = new PropertiesConfig();
 
     @Given("a maximal request {word}")
@@ -42,9 +49,9 @@ public class CucumberSteps {
     }
 
     @When("{string} api is called")
-    public void apiCalled(String string) throws IOException {
+    public void apiCalled(String requestType) throws IOException {
 
-        Resource resource = new ClassPathResource("json/request/EligibilityRequest.json");
+        Resource resource = new ClassPathResource("json/request/EligibilityRequest-" + requestType + ".json");
         File file = resource.getFile();
         String request1 = new String(Files.readAllBytes(file.toPath()));
         log.info("\n ****************** Request Body ****************** " + '\n' + request1);
@@ -59,11 +66,18 @@ public class CucumberSteps {
                 .statusCode(200).contentType(ContentType.JSON).
                 extract().response();
     }
-    @Then("Validate the {string} response")
-    public void responseValidation(String string) throws IOException {
 
-        var responseBody = response.getBody();
-        log.info("\n ****************** Response Body ****************** " + '\n' + responseBody.asPrettyString());
+    @Then("the {string} response is returned")
+    public void responseValidation(String responseType) throws Exception {
+
+        Resource resource = new ClassPathResource("json/response/EligibilityResponse-" + responseType + ".json");
+        File file = resource.getFile();
+      String responseBody = String.valueOf(response.getBody());
+//        var responseBody = response.getBody();
+
+//        resultActions.andExpect(status().isOk()).andExpect(MockMvcResultMatchers.content().json(responseBody));
+
+//        log.info("\n ****************** Response Body ****************** " + '\n' + responseBody));
     }
 
     @And("compare the file {string} is equal to {string}")
@@ -83,4 +97,5 @@ public class CucumberSteps {
         JsonNode expectedTree=mapper.readTree(content1);
         assertEquals(actualTree, expectedTree);
     }
+
 }

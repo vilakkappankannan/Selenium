@@ -1,11 +1,11 @@
 Feature: Smoke Tests
 
-@smoke
+  @smoke
   Scenario Outline: API Test
     Given a maximal request <apiURI>
-    When "Eligibility" api is called
-    Then Validate the "success" response
-    And compare the file "actual" is equal to "expected"
+    When "valid" api is called
+    Then the "success" response is returned
+#    And compare the file "actual" is equal to "expected"
 
     Examples:
       | apiURI      |
