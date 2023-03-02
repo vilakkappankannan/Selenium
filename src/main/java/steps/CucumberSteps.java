@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @Slf4j
 public class CucumberSteps {
-    public HashMap<Object,Object> map=new HashMap<Object,Object>();
+    public HashMap<Object, Object> map = new HashMap<Object, Object>();
     private static Response response;
     private ResultActions resultActions;
     final PropertiesConfig propertiesConfig = new PropertiesConfig();
@@ -42,9 +42,9 @@ public class CucumberSteps {
     public void endPoint(String apiURI) throws IOException {
 
         //Base Url
-        RestAssured.baseURI= propertiesConfig.readProperties().getProperty("baseURI");
-        RestAssured.basePath= propertiesConfig.readProperties().getProperty(apiURI+".version")+propertiesConfig.readProperties().getProperty(apiURI+".uri");
-        log.info("\n ****************** End Point ****************** " + '\n' + baseURI+basePath);
+        RestAssured.baseURI = propertiesConfig.readProperties().getProperty("baseURI");
+        RestAssured.basePath = propertiesConfig.readProperties().getProperty(apiURI + ".version") + propertiesConfig.readProperties().getProperty(apiURI + ".uri");
+        log.info("\n ****************** End Point ****************** " + '\n' + baseURI + basePath);
 
     }
 
@@ -68,16 +68,14 @@ public class CucumberSteps {
     }
 
     @Then("the {string} response is returned")
-    public void responseValidation(String responseType) throws Exception {
+    public void responseValidation(String responseType) throws IOException {
 
         Resource resource = new ClassPathResource("json/response/EligibilityResponse-" + responseType + ".json");
         File file = resource.getFile();
-      String responseBody = String.valueOf(response.getBody());
-//        var responseBody = response.getBody();
+        var responseBody = response.getBody();
+        log.info("\n ****************** Response Body ****************** " + '\n' + responseBody.asPrettyString());
 
-//        resultActions.andExpect(status().isOk()).andExpect(MockMvcResultMatchers.content().json(responseBody));
-
-//        log.info("\n ****************** Response Body ****************** " + '\n' + responseBody));
+        //        resultActions.andExpect(status().isOk()).andExpect(MockMvcResultMatchers.content().json(responseBody));
     }
 
     @And("compare the file {string} is equal to {string}")
@@ -93,8 +91,8 @@ public class CucumberSteps {
         log.info("\n ****************** Expected data ****************** " + '\n' + content1);
 
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode actualTree =mapper.readTree(content);
-        JsonNode expectedTree=mapper.readTree(content1);
+        JsonNode actualTree = mapper.readTree(content);
+        JsonNode expectedTree = mapper.readTree(content1);
         assertEquals(actualTree, expectedTree);
     }
 
