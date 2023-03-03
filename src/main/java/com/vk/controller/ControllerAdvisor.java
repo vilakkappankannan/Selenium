@@ -58,7 +58,6 @@ public class ControllerAdvisor implements RequestBodyAdvice {
         return errorMessage;
     }
 
-
     public ResponseEntity<Object> generateException(List<StatusCode> errors, HttpStatus status) {
         var responseHeader = new EligibilityResponse();
         return generateException(errors, status, responseHeader);
