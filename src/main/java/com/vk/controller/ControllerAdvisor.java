@@ -63,7 +63,6 @@ public class ControllerAdvisor implements RequestBodyAdvice {
         var responseHeader = new EligibilityResponse();
         return generateException(errors, status, responseHeader);
     }
-
     public ResponseEntity<Object> generateException(List<StatusCode> errors, HttpStatus status, EligibilityResponse eligibilityResponse) {
         List<Map<String, String>> errorList = new ArrayList<>();
         errors.forEach(error -> errorList.add(error.getJsonError()));
