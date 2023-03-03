@@ -2,6 +2,9 @@ package com.vk.module;
 
 import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
+
 @Data
 public class EligibilityResponse {
 
@@ -11,4 +14,6 @@ public class EligibilityResponse {
     private String requestId;
     private SecureContext secureContext;
 
+    public void setErrors(List<Map<String, String>> errorList) {
+    }
 }
