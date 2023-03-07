@@ -14,7 +14,6 @@ public class EligibilityService {
 
     @Autowired
     private EligibilityRepo repo;
-
     private GenerateRandomValue generateRandomValue = new GenerateRandomValue();
     private Base64Encryption base64Encryption = new Base64Encryption();
     public Eligibility saveEligibility (EligibilityRequest request) {
@@ -25,6 +24,7 @@ public class EligibilityService {
 //        eligibility.setCardNumber(base64Encryption.encrypt(request.getCardDetails().getCardNumber()));
         eligibility.setCardNumber(request.getCardDetails().getCardNumber());
         eligibility.setCvv(request.getCardDetails().getCvv());
+        eligibility.setRequestId(generateRandomValue.randomValues());
         return repo.save(eligibility);
 
     }

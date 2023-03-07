@@ -3,6 +3,7 @@ package steps;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import configurations.PropertiesConfig;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -23,7 +24,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 import static org.junit.Assert.assertEquals;
@@ -47,9 +51,10 @@ public class CucumberSteps {
         log.info("\n ****************** End Point ****************** " + '\n' + baseURI + basePath);
 
     }
+    @When("{string} api is called with data")
+    public void api_is_called_with_data(String requestType, DataTable dataTable) throws IOException {
 
-    @When("{string} api is called")
-    public void apiCalled(String requestType) throws IOException {
+        Map<String, String> dataMap = dataTable.asMap(String.class, String.class);
 
         Resource resource = new ClassPathResource("json/request/EligibilityRequest-" + requestType + ".json");
         File file = resource.getFile();
@@ -66,7 +71,6 @@ public class CucumberSteps {
                 .statusCode(200).contentType(ContentType.JSON).
                 extract().response();
     }
-
     @Then("the {string} response is returned")
     public void responseValidation(String responseType) throws IOException {
 

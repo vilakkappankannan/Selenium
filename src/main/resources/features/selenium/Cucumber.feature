@@ -3,7 +3,8 @@ Feature: Smoke Tests
   @smoke
   Scenario Outline: API Test
     Given a maximal request <apiURI>
-    When "valid" api is called
+    When "valid" api is called with data
+      | requestId | 458789 |
     Then the "success" response is returned
 #    And compare the file "actual" is equal to "expected"
 
@@ -12,8 +13,8 @@ Feature: Smoke Tests
       | Eligibility |
 
 
-##  @smoke
-#  Scenario Outline: Json Test
+#  @smoke
+#  Scenario: Json Test
 #    Given scenario data
 #      | cardNumber | 123456 |
 #    When the "Eligibility" api is called with the "<request>" request and data
