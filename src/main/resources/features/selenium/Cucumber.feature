@@ -6,6 +6,7 @@ Feature: Smoke Tests
     When "valid" api is called with data
       | requestId | 458789 |
     Then the "success" response is returned
+#    And the "eligibilityResponse" json field "secureContext.encrypt" is decrypted and saved as "decrypted-response"
 #    And compare the file "actual" is equal to "expected"
 
     Examples:
