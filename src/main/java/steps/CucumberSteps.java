@@ -20,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import utils.ReportHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -70,6 +71,9 @@ public class CucumberSteps {
                 .then()
                 .statusCode(200).contentType(ContentType.JSON).
                 extract().response();
+
+        //Display output in cucumber report
+        ReportHelper.addRequestResponseToHtmlReport("Eligibility API", "http://localhost:8082/eligibility/test", request1, String.valueOf(response));
     }
     @Then("the {string} response is returned")
     public void responseValidation(String responseType) throws IOException {
