@@ -6,8 +6,24 @@ Feature: Smoke Tests
     When "valid" api is called with data
       | requestId | 458789 |
     Then the "success" response is returned
+    And "secureContext.encrypt" the response
 #    And the "eligibilityResponse" json field "secureContext.encrypt" is decrypted and saved as "decrypted-response"
 #    And compare the file "actual" is equal to "expected"
+
+    Examples:
+      | apiURI      |
+      | Eligibility |
+
+
+  @smoke
+  Scenario Outline: API Test with template
+    Given a maximal request <apiURI>
+    Given a valid request with data
+      | requestId | 458789 |
+    Then the "success" response is returned
+    And "secureContext.encrypt" the response
+    And the "eligibilityResponse" json field "secureContext.encrypt" is decrypted and saved as "decrypted-response"
+    And compare the file "actual" is equal to "expected"
 
     Examples:
       | apiURI      |

@@ -1,0 +1,7 @@
+{
+  "cardDetails": {
+    "cardNumber": "22222",
+    "cvv": "123"
+  },
+  "requestId": "{{requestId}}"
+}
