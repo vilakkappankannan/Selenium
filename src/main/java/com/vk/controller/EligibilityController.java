@@ -38,7 +38,7 @@ public class EligibilityController {
 //        response.setRequestId(add.getRequestId());
         //in response if we need random values we can generate
         response.setRequestId(generateRandomValue.randomValues());
-        response.setCardNumber(masking.mask(add.getCardDetails().getCardNumber()));
+        response.setCardNumber(masking.mask(add.getCardDetails().getCardNumber(), 4));
         response.setSecureContext(new SecureContext(base64Encryption.encrypt(add.getCardDetails().getCardNumber())));
 
         return response;

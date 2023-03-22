@@ -10,12 +10,18 @@ public class Masking {
 //
 //      }
 
-
     // Particular mask
-    public String mask(String toBeMasked) {
+    public String mask(String toBeMasked, int value) {
 
-        toBeMasked = toBeMasked.replaceFirst(toBeMasked.substring(0, 4), "****");
-        return(toBeMasked);
+        String output = "";
+        for (int i = 0; i < value; i++) {
+            output = output + "*";
+        }
+
+        toBeMasked = toBeMasked.replaceFirst(toBeMasked.substring(0, value), output);
+
+        return toBeMasked;
+
     }
 }
 
