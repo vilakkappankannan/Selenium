@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group 'com.uk.vk'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-gradle-plugin:3.0.0'
+    implementation 'org.springframework.kafka:spring-kafka:2.7.2'
+    implementation 'org.springframework.kafka:spring-kafka-test:2.6.3'
+
+    // https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
+    implementation 'org.apache.kafka:kafka-clients:3.4.0'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation 'org.slf4j:slf4j-api:2.0.7'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    implementation 'org.slf4j:slf4j-simple:2.0.7'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot:${springBootVersion}"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
