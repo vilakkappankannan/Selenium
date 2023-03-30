@@ -1,0 +1,51 @@
+openapi: 3.0.1
+info:
+  title: Test
+  description: The Eligibility API
+  version: v2
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /eligibility/test:
+    post:
+      tags:
+        - eligibility-controller
+      summary: Eligibility
+      operationId: Eligibility
+      parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Cache-Control
+          in: header
+          required: true
+          schema:
+            pattern: no-store
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EligibilityRequests'
+            example:
+              requestHeader:
+                requestId: test
+                cardDetails:
+                  cardNumber: 22222
+                  cvv: 456
+        required: true
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EligibilityResponses'

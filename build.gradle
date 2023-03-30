@@ -1,13 +1,31 @@
+import org.asciidoctor.gradle.jvm.AsciidoctorTask
+import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
+
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.0'
     id 'io.spring.dependency-management' version '1.1.0'
     id 'io.gatling.gradle' version '3.9.0.3'
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
+    id "org.openapi.generator" version "6.2.1"
+    id "org.ajoberstar.git-publish" version "4.1.1"
+    id "com.github.spacialcircumstances.gradle-cucumber-reporting" version "0.1.25"
 
 }
 
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+apply plugin: "maven-publish"
+
 group 'com.uk.vk'
 version '0.0.1-SNAPSHOT'
+
+ext {
+    openApiSpecFile = "$rootDir/openapi/cucumber.yaml"
+    asciiDocStaticDir = "$rootDir/docs"
+    asciiDocBuildDir = "$buildDir/docs"
+}
 
 repositories {
     maven { url nexusPublicRepoURL }
@@ -85,3 +103,65 @@ gatling{
 //        include "**demo/BasicSimulation.java"
     }
 }
+
+tasks.register('cleanDocs', Delete) {
+    group 'docs'
+    description 'clean up auto generated documentation'
+    delete 'build/docs'
+}
+
+tasks.register('buildOpenApiDocs', GenerateTask) {
+    group 'openapi tools'
+    generatorName = "asciidoc"
+    inputSpec = openApiSpecFile
+    outputDir = "$asciiDocBuildDir/spec"
+    configOptions = [
+            skipExamples: "false"
+    ]
+}
+
+tasks.register('buildDocs', AsciidoctorTask) {
+    group 'docs'
+    dependsOn buildOpenApiDocs
+    doFirst {
+        copy {
+            from asciiDocStaticDir
+            into asciiDocBuildDir
+        }
+    }
+    sourceDir asciiDocBuildDir
+    outputDir asciiDocBuildDir
+    attributes 'documentationDir': asciiDocBuildDir,
+            'app-name': project.name,
+            'reproducible': 'true',
+            'revnumber': 'LATEST'
+    dependsOn build
+}
+
+cucumberReports {
+    reports = files("$asciiDocBuildDir/test-reports/cucumber-report.json")
+    outputDir = file("$asciiDocBuildDir/test-reports/")
+    buildId = '0'
+    projectNameOverride = "cucumber-report"
+}
+
+//gitPublish {
+//    repoUri = "githubpath.git"
+//    branch = 'docs'
+//    contents {
+//        from("$asciiDocBuildDir") {
+//            into '.'
+//        }
+//    }
+//}
+
+//tasks.register('publishDocs') {
+//    group "docs"
+//    finalizedBy gitPublishPush
+//}
+
+//tasks.register('buildAndPublishDocs') {
+//    group "docs"
+//    finalizedBy publishDocs
+//    dependsOn(buildDocs)
+//}

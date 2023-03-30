@@ -2,7 +2,7 @@ package com.vk.controller;
 
 import com.vk.module.EligibilityRequest;
 import com.vk.module.EligibilityResponse;
-import com.vk.module.EncryptedFields;
+//import com.vk.module.EncryptedFields;
 import com.vk.module.SecureContext;
 import com.vk.service.EligibilityService;
 import jakarta.validation.Valid;
@@ -23,7 +23,7 @@ public class EligibilityController {
     private Base64Encryption base64Encryption = new Base64Encryption();
     private SecureContext secureContext = new SecureContext();
     private GenerateRandomValue generateRandomValue = new GenerateRandomValue();
-    private EncryptedFields encryptedFields = new EncryptedFields();
+//    private EncryptedFields encryptedFields = new EncryptedFields();
 
     //Request
     @PostMapping(value = "/test")
